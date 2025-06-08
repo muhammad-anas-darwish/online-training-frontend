@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { range } from 'lodash';
 const darkMode = ref(false);
 
+const numbers = range(1, 10);
 const toggleDarkMode = () => {
   darkMode.value = !darkMode.value;
   document.documentElement.classList.toggle('dark', darkMode.value);
