@@ -14,6 +14,8 @@ const toggleDarkMode = () => {
     {{ darkMode ? '🌙' : '☀️' }}
   </button>
 
+  <h1>{{ $t('greeting') }}</h1>
+
   <div class="flex justify-center items-center min-h-screen">
     <form class="max-w-sm mx-auto">
       <div class="mb-5">
