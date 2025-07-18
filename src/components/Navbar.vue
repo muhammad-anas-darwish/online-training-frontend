@@ -29,7 +29,7 @@ const toggleDarkMode = () => {
 </script>
 
 <template>
-  <nav class="bg-white border-gray-200 dark:bg-gray-900">
+  <nav class="bg-gray-50 border-gray-200 dark:bg-gray-800">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
       <div>
         <button data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar" aria-controls="sidebar-multi-level-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
@@ -41,7 +41,7 @@ const toggleDarkMode = () => {
       </div>
       <div class="flex items-center space-x-2 md:order-2">
         <div class="relative">
-          <button @click="toggleDarkMode" class="p-1 rounded-full bg-gray-200 dark:bg-gray-700">
+          <button @click="toggleDarkMode" class="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700">
             {{ darkMode ? '🌙' : '☀️' }}
           </button>
         </div>
