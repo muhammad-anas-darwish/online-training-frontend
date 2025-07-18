@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { initFlowbite } from 'flowbite';
 import Navbar from './components/Navbar.vue';
+import Sidebar from './components/Sidebar.vue';
 import { onMounted } from 'vue';
 
 onMounted(() => {
@@ -11,6 +12,7 @@ onMounted(() => {
 <template>
   <div class="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
     <Navbar />
+    
     <header class="bg-white dark:bg-gray-800 shadow dark:shadow-gray-700">
       <nav class="container mx-auto px-6 py-3">
         <div class="flex justify-between items-center">
@@ -36,9 +38,12 @@ onMounted(() => {
         </div>
       </nav>
     </header>
+    <Sidebar />
 
-    <main class="container mx-auto px-6 py-8 bg-white text-gray-900 dark:bg-gray-900 dark:text-white">
-      <RouterView />
+    <main class="ml-0 sm:ml-64 px-6 py-8 bg-white text-gray-900 dark:bg-gray-900 dark:text-white min-h-[calc(100vh-4rem)]">
+      <div class="container mx-auto">
+        <RouterView />
+      </div>
     </main>
   </div>
 </template>
