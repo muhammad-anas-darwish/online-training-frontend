@@ -7,21 +7,21 @@
         </div>
         <div class="space-x-4">
           <RouterLink 
-            to="/" 
+            :to="{ name: 'home' }" 
             class="px-3 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors duration-300"
             active-class="bg-gray-100 dark:bg-gray-700"
           >
             Home
           </RouterLink>
           <RouterLink 
-            to="/about" 
+            :to="{ name: 'about' }" 
             class="px-3 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors duration-300"
             active-class="bg-gray-100 dark:bg-gray-700"
           >
             About
           </RouterLink>
           <RouterLink 
-            to="/welcome" 
+            :to="{ name: 'welcome' }" 
             class="px-3 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors duration-300"
             active-class="bg-gray-100 dark:bg-gray-700"
           >

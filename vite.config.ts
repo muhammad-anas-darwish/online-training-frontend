@@ -3,6 +3,7 @@ import vue from "@vitejs/plugin-vue";
 import tailwindcss from "@tailwindcss/vite";
 import autoImport from "unplugin-auto-import/vite";
 import VueDevTools from 'vite-plugin-vue-devtools';
+import path from 'path';
 
 export default defineConfig({
   plugins: [
@@ -85,4 +86,10 @@ export default defineConfig({
       dumpUnimportItems: "./auto-imports.json", 
     }),
   ],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'), 
+      '@services': path.resolve(__dirname, './src/services') 
+    }
+  }
 });
