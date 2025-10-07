@@ -1,5 +1,11 @@
+<script setup>
+import { useAuthStore } from ".././stores/auth.store";
+
+const authStore = useAuthStore();
+</script>
+
 <template>
-  <header class="bg-white dark:bg-gray-800 shadow dark:shadow-gray-700">
+  <header v-if="authStore.isAuthenticated" class="bg-white dark:bg-gray-800 shadow dark:shadow-gray-700">
     <nav class="container mx-auto px-6 py-3">
       <div class="flex justify-between items-center">
         <div class="text-xl font-semibold text-gray-700 dark:text-gray-200">

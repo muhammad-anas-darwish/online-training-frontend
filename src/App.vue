@@ -16,7 +16,7 @@ onMounted(() => {
     <Header />
     <Sidebar />
 
-    <main class="ml-0 sm:ml-64 px-6 py-8 bg-white text-gray-900 dark:bg-gray-900 dark:text-white min-h-[calc(100vh-4rem)]">
+    <main class="ltr:ml-0 rtl:mr-0 ltr:sm:ml-64 rtl:sm:mr-64 px-6 py-8 bg-white text-gray-900 dark:bg-gray-900 dark:text-white min-h-[calc(100vh-4rem)]">
       <div class="container mx-auto">
         <RouterView />
       </div>

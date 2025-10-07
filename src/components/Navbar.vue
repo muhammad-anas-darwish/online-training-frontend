@@ -13,7 +13,6 @@ import { useAuthStore } from ".././stores/auth.store";
 //   }
 // })
 
-
 const { locale } = useI18n();
 
 const languages = {
@@ -32,6 +31,15 @@ const changeLanguage = (lang) => {
   localStorage.setItem('userLanguage', lang);
 
   http.defaults.headers.common['Accept-Language'] = lang;
+
+  let direction = 'ltr';
+
+  if (lang === 'ar') {
+    direction = 'rtl';
+  }
+
+  localStorage.setItem('direction', direction);
+  document.documentElement.setAttribute('dir', direction);
 };
 
 const darkMode = ref(false);
