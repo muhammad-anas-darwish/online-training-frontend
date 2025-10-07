@@ -1,15 +1,26 @@
 <script setup>
 import { onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
+import http from '../plugins/http';
+import { AuthService } from '@services/auth.service';
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+import { useAuthStore } from ".././stores/auth.store";
+
+// watch(() => authStore.isGuest, (isGuest) => {
+//   if (!isGuest) {
+//     initComponent('dropdown')
+//   }
+// })
 
 const { locale } = useI18n();
 
 const languages = {
-  'en-US': {
+  'en': {
     name: 'English (US)',
     flag: 'us'
   },
-  'ar-SA': {
+  'ar': {
     name: 'Arabic (SA)',
     flag: 'sa'
   },
@@ -18,6 +29,17 @@ const languages = {
 const changeLanguage = (lang) => {
   locale.value = lang;
   localStorage.setItem('userLanguage', lang);
+
+  http.defaults.headers.common['Accept-Language'] = lang;
+
+  let direction = 'ltr';
+
+  if (lang === 'ar') {
+    direction = 'rtl';
+  }
+
+  localStorage.setItem('direction', direction);
+  document.documentElement.setAttribute('dir', direction);
 };
 
 const darkMode = ref(false);
@@ -25,6 +47,14 @@ const darkMode = ref(false);
 const toggleDarkMode = () => {
   darkMode.value = !darkMode.value;
   document.documentElement.classList.toggle('dark', darkMode.value);
+};
+
+const router = useRouter();
+const authStore = useAuthStore();
+
+const logout = async () => {
+  await authStore.logout();
+  router.push({ name: "home" });
 };
 </script>
 
@@ -81,7 +111,7 @@ const toggleDarkMode = () => {
         </div>
         
         <!-- If Guest -->
-        <div v-if="1" class="relative"> 
+        <div v-if="authStore.isGuest" class="relative"> 
           <RouterLink 
             to="/login" 
             class="px-3 py-2 bg-gray-100 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors duration-300 dark:bg-gray-700"
@@ -91,15 +121,15 @@ const toggleDarkMode = () => {
         </div>
         <!-- User Menu If Authenticated -->
         <div v-else class="relative">
-          <button type="button" class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+          <button type="button" class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom" v-dropdown>
             <span class="sr-only">Open user menu</span>
             <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="user photo">
           </button>
           <!-- Dropdown menu -->
           <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
             <div class="px-4 py-3">
-              <span class="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
-              <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+              <span class="block text-sm text-gray-900 dark:text-white">{{ AuthService.getCurrentUser()?.name }}</span>
+              <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">{{ AuthService.getCurrentUser()?.email }}</span>
             </div>
             <ul class="py-2" aria-labelledby="user-menu-button">
               <li>
@@ -112,7 +142,11 @@ const toggleDarkMode = () => {
                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
               </li>
               <li>
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+                <a href="#" 
+                  @click.prevent="logout" 
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                  Sign out
+                </a>
               </li>
             </ul>
           </div>

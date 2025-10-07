@@ -1,0 +1,13 @@
+{
+  "greeting": "Hello!",
+  "welcome": "Welcome to our app!",
+  "login": "Login",
+  "password": "Password",
+  "email": "Email",
+  "name": "Name",
+  "password_confirmation": "Confirm Password",
+  "sign up": "Sign up",
+  "Do not have an account?": "Do not have an account?",
+  "Already have an account?": "Already have an account?"
+}
+

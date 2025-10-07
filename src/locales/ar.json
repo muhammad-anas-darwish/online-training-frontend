@@ -1,0 +1,13 @@
+{
+  "greeting": "مرحبًا!",
+  "welcome": "أهلاً بك في تطبيقنا!",
+  "login": "تسجيل دخول",
+  "password": "كلمة السر",
+  "email": "البريد الإلكتروني",
+  "name": "الاسم",
+  "password_confirmation": "تأكيد كلمة السر",
+  "sign up": "إنشاء حساب",
+  "Do not have an account?": "ليس لديك حساب؟",
+  "Already have an account?": "هل لديك حساب بالفعل؟"
+}
+

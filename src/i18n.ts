@@ -1,20 +1,16 @@
 import { createI18n } from 'vue-i18n';
+import en from './locales/en.json';
+import ar from './locales/ar.json';
 
 const messages = {
-  'en-US': {
-    greeting: 'Hello!',
-    welcome: 'Welcome to our app!',
-  },
-  'ar-SA': {
-    greeting: 'مرحبًا!',
-    welcome: 'أهلاً بك في تطبيقنا!',
-  },
+  en,
+  ar,
 };
 
 const i18n = createI18n({
   legacy: false, 
-  locale: localStorage.getItem('userLanguage') || 'en-US',
-  fallbackLocale: 'en-US',
+  locale: localStorage.getItem('userLanguage') || 'en',
+  fallbackLocale: 'en',
   messages, 
 });
 
